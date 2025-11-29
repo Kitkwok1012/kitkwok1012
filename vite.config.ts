@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
       // Set the base path for GitHub Pages deployment. This should be your repository name.
-      base: '/osaka-planner/',
+      base: '/kitkwok1012/',
       server: {
         port: 3000,
         host: '0.0.0.0',
