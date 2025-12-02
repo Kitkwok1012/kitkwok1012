@@ -45,39 +45,41 @@ const days = [
   {
     day: 'Day 2',
     date: '2025-12-08（一）',
-    title: '大阪城・梅田展望夜景',
-    weather: { icon: '☀️', tempHigh: 13, tempLow: 6, condition: '晴朗' },
+    title: '心齋橋・美國村逛街',
+    weather: { icon: '🌤️', tempHigh: 12, tempLow: 5, condition: '局部多雲' },
     mapGuide: {
-      label: '大阪城公園地圖',
-      url: 'https://maps.google.com/?q=Osaka+Castle',
-      embed: 'https://www.google.com/maps?q=Osaka+Castle&output=embed',
-      note: '谷町四丁目站 2 號出口 → 天守閣'
+      label: '心齋橋逛街地圖',
+      url: 'https://maps.google.com/?q=Shinsaibashi',
+      embed: 'https://www.google.com/maps?q=Shinsaibashi&output=embed',
+      note: '心齋橋筋 → 美國村 → 道頓堀'
     },
     items: [
-      '10:30 御堂筋線 難波 → 谷町四丁目（約 12 分）步行到大阪城',
-      '11:00 大阪城天守閣拍照，公園散步',
-      '12:30 午餐：天滿市場海鮮丼或黑門市場壽司',
-      '16:00 前往梅田藍天大廈空中庭園（御堂筋線約 14 分）',
-      '19:00 HEP FIVE 摩天輪／Grand Front Osaka 逛街'
+      '10:30 步行或搭乘地鐵至心齋橋，開始逛心齋橋筋商店街',
+      '12:30 午餐：在心齋橋地區品嚐拉麵或蛋包飯',
+      '14:00 逛大丸百貨與 PARCO，尋找潮流品牌與設計師商品',
+      '16:00 前往美國村，探索古著店與街頭文化',
+      '18:30 漫步至道頓堀，與固力果跑跑人招牌合照，感受夜生活',
+      '19:30 晚餐：在道頓堀選擇蟹道樂或美味的燒肉'
     ]
   },
   {
     day: 'Day 3',
     date: '2025-12-09（二）',
-    title: '奈良半日・鹿公園',
-    weather: { icon: '🌤️', tempHigh: 12, tempLow: 5, condition: '局部多雲' },
+    title: '黑門市場美食・梅田購物樂',
+    weather: { icon: '☀️', tempHigh: 13, tempLow: 6, condition: '晴朗' },
     mapGuide: {
-      label: '奈良公園散步',
-      url: 'https://maps.google.com/?q=Nara+Park',
-      embed: 'https://www.google.com/maps?q=Nara+Park&output=embed',
-      note: '近鐵奈良站 2 號出口 → 公園、東大寺、春日大社'
+      label: '黑門市場逛街地圖',
+      url: 'https://maps.google.com/?q=Kuromon+Ichiba+Market',
+      embed: 'https://www.google.com/maps?q=Kuromon+Ichiba+Market&output=embed',
+      note: '從難波步行約 10 分鐘，或搭地鐵至「日本橋站」'
     },
     items: [
-      '10:15 近鐵奈良線 難波 → 近鐵奈良（約 40 分，無需轉乘）',
-      '11:00 奈良公園餵鹿、東大寺，帶鹿仙貝＋濕紙巾',
-      '13:00 春日大社散步，午餐奈良町咖啡廳',
-      '16:00 返回難波，路上可買赤福/柿葉壽司手信',
-      '19:00 晚餐：難波燒肉（萬野/牛角）或炸串'
+      '10:30 步行至黑門市場，準備開動！',
+      '11:00 在黑門市場邊走邊吃，品嚐新鮮海膽、烤扇貝、神戶牛、時令水果',
+      '13:00 午餐後，搭乘御堂筋線從難波前往梅田（約 8 分鐘）',
+      '14:00 開始逛梅田各大百貨，如阪急、大丸、LUCUA 等',
+      '17:00 前往梅田藍天大廈，欣賞日落與大阪夜景',
+      '19:30 晚餐於梅田解決，或搭乘紅色 HEP FIVE 摩天輪'
     ]
   },
   {
@@ -102,20 +104,21 @@ const days = [
   {
     day: 'Day 5',
     date: '2025-12-11（四）',
-    title: 'Outlet + 難波購物日',
+    title: '天王寺購物・美食一日遊',
     weather: { icon: '⛅️', tempHigh: 12, tempLow: 6, condition: '多雲' },
     mapGuide: {
-      label: 'Rinku Premium Outlet',
-      url: 'https://maps.google.com/?q=Rinku+Premium+Outlets',
-      embed: 'https://www.google.com/maps?q=Rinku+Premium+Outlets&output=embed',
-      note: '南海難波 → 直達「りんくうタウン」站步行 6 分鐘'
+      label: '天王寺・阿倍野逛街地圖',
+      url: 'https://maps.google.com/?q=Tennoji+Station',
+      embed: 'https://www.google.com/maps?q=Tennoji+Station&output=embed',
+      note: '從難波搭御堂筋線約 6 分鐘直達「天王寺站」'
     },
     items: [
-      '10:00 南海難波 → りんくうタウン（急行約 45 分），Rinku Premium Outlet 血拼',
-      '13:00 午餐在 Outlet 美食街／臨空城 SEACLE',
-      '15:30 返回難波，放戰利品',
-      '16:30 難波 Parks / Namba City / Takashimaya 嗌免稅，順逛唐吉訶德',
-      '20:30 心齋橋商店街最後補貨，夜宵拉麵/燒肉'
+      '11:00 搭地鐵御堂筋線前往天王寺站',
+      '11:30 逛日本第一高樓「阿倍野 HARUKAS」，內有近鐵百貨，品牌齊全',
+      '13:30 在 HARUKAS 美食街或 Q\'s Mall 享用午餐',
+      '15:00 逛大型商場 Q\'s Mall，有 SHIBUYA 109、Bic Camera 等店舖',
+      '17:30 可選擇登上 HARUKAS 300 展望台欣賞大阪黃昏景色',
+      '19:00 晚餐可到懷舊風情的「新世界」地區，品嚐道地的串炸'
     ]
   },
   {
@@ -242,6 +245,19 @@ function ExpandableSection({ items, collapsedCount = 3, renderItem, expandLabel,
 function DayDetail({ day }) {
   const badgeText = useMemo(() => ` ${day.weather.condition}`, [day.weather])
   const tempText = useMemo(() => `${day.weather.tempLow}° ~ ${day.weather.tempHigh}°`, [day.weather])
+  const [destinationInput, setDestinationInput] = useState('')
+
+  const handleNavigation = (e) => {
+    e.preventDefault()
+    if (!destinationInput.trim()) {
+      alert('請輸入目的地！')
+      return
+    }
+    const destination = encodeURIComponent(destinationInput)
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${destination}`
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <div className="day-card">
       <div className="day-card__header">
@@ -259,14 +275,24 @@ function DayDetail({ day }) {
       </div>
       {day.mapGuide && (
         <div className="map-card">
-          <div className="map-card__info">
-            <div>
-              <small className="muted">地圖教學</small>
-              <strong>{day.mapGuide.label}</strong>
-              <p className="muted">{day.mapGuide.note}</p>
+          <form className="map-card__info map-form" onSubmit={handleNavigation}>
+            <div className="map-input__wrapper">
+              <svg className="map-input__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input
+                type="text"
+                className="map-input"
+                placeholder="想去邊？輸入目的地..."
+                value={destinationInput}
+                onChange={(e) => setDestinationInput(e.target.value)}
+              />
             </div>
-            <a className="map-link__cta" href={day.mapGuide.url} target="_blank" rel="noreferrer">在 Google Maps 開啟 ↗</a>
-          </div>
+            <button type="submit" className="map-button" aria-label="規劃路線">
+              <span>規劃路線</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+            </button>
+          </form>
           {day.mapGuide.embed && (
             <div className="map-frame">
               <iframe
