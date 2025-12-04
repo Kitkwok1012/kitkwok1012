@@ -385,7 +385,7 @@ function ExpandableSection({ items, collapsedCount = 3, renderItem, expandLabel,
   )
 }
 
-function Checklist({ items, collapsedCount = 3, expandLabel = '展開全部', collapseLabel = '收起' }) {
+function Checklist({ items, collapsedCount = 3, expandLabel = '展開全部', collapseLabel = '收起全部' }) {
   const [checked, setChecked] = useState(() => new Set())
   const [expanded, setExpanded] = useState(false)
 
@@ -544,7 +544,7 @@ export default function App() {
           </Card>
 
           <Card title="事前準備 Checklist" footer={<p className="hint">出發前逐項勾選，護照與保險掃描檔記得備份。</p>}>
-            <Checklist items={prepList} collapsedCount={4} expandLabel="展開全部準備項目" collapseLabel="收起" />
+            <Checklist items={prepList} collapsedCount={0} expandLabel="展開全部" collapseLabel="收起全部" />
           </Card>
 
           <Card title="每日行程（6 天分頁）" footer={<p className="hint">使用下方分頁查看當日安排與天氣。</p>}>
