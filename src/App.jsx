@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Tabs, TabList, Tab, TabPanel } from 'react-aria-components'
 
 const tripWindow = { start: '2025-12-07', end: '2025-12-12' }
+const coverImage = '/cover-itinerary.png'
 
 const flights = {
   outbound: {
@@ -35,8 +36,8 @@ const days = [
       note: '心齋橋筋 ↔ 道頓堀河畔散步'
     },
     items: [
-      '09:55 HKG → 14:20 KIX（UO850），入境後買 ICOCA',
-      '15:00 南海特急 Airport Express → 難波（約 45 分，直達）',
+      '09:55 HKG → 14:20 KIX（UO850），入境後入手 Suica（西瓜卡）',
+      '15:00 關空快速或 Haruka → 天王寺，轉大和路線往 JR 難波（OCAT 同棟）',
       '16:30 入住「大阪蒙特利格拉斯米爾酒店」（JR 難波站旁），短休息',
       '18:00 道頓堀散步＋章魚燒（會津屋/銀だこ）',
       '20:00 心齋橋購物藥妝、唐吉訶德地下超市'
@@ -65,17 +66,17 @@ const days = [
   {
     day: 'Day 3',
     date: '2025-12-09（二）',
-    title: '黑門市場美食・梅田購物樂',
+    title: '木津市場早餐・梅田購物樂',
     weather: { icon: '☀️', tempHigh: 13, tempLow: 6, condition: '晴朗' },
     mapGuide: {
-      label: '黑門市場逛街地圖',
-      url: 'https://maps.google.com/?q=Kuromon+Ichiba+Market',
-      embed: 'https://www.google.com/maps?q=Kuromon+Ichiba+Market&output=embed',
-      note: '從難波步行約 10 分鐘，或搭地鐵至「日本橋站」'
+      label: '木津市場動線',
+      url: 'https://maps.google.com/?q=Kizu+Ichiba+Market',
+      embed: 'https://www.google.com/maps?q=Kizu+Ichiba+Market&output=embed',
+      note: '難波搭御堂筋線至「大國町」或步行 15 分鐘，市場新鮮度佳'
     },
     items: [
-      '10:30 步行至黑門市場，準備開動！',
-      '11:00 在黑門市場邊走邊吃，品嚐新鮮海膽、烤扇貝、神戶牛、時令水果',
+      '10:00 御堂筋線或步行前往木津市場，早餐開動！',
+      '10:30 在木津市場邊走邊吃，品嚐生魚片、烤扇貝、握壽司、時令水果',
       '13:00 午餐後，搭乘御堂筋線從難波前往梅田（約 8 分鐘）',
       '14:00 開始逛梅田各大百貨，如阪急、大丸、LUCUA 等',
       '17:00 前往梅田藍天大廈，欣賞日落與大阪夜景',
@@ -144,40 +145,177 @@ const days = [
 
 const foodSpots = [
   {
-    name: '一蘭拉麵道頓堀 / 難波店',
-    detail: '24 小時營業，夜宵不用怕排太久；先在機台選湯濃度與麵硬度',
-    tag: '排隊快'
-  },
-  {
-    name: '蟹道樂本店',
-    detail: '建議提前線上預約；套餐 ¥8,000~12,000，桌邊拆蟹服務',
-    tag: '需預約'
-  },
-  {
-    name: '燒肉五苑／牛角／萬野',
-    detail: '晚餐 17:30 前入座較少等候，萬野牛舌與內臟串值得點',
+    name: '松阪牛燒肉 M（法善寺橫丁店）｜松阪牛焼肉 M',
+    cuisine: '高級松阪牛燒肉，氛圍感十足，建議預約',
+    budget: '午 ¥4,000~｜晚 ¥8,000~',
+    search: '搜尋「松阪牛焼肉M 法善寺横丁」看圖片與地址',
+    area: '心齋橋',
     tag: '燒肉'
   },
   {
-    name: '章魚燒（會津屋／銀だこ）',
-    detail: '會津屋原味不加醬；銀だこ外脆內軟。人多時外帶速度較快',
-    tag: '小食'
+    name: '北村壽喜燒（北むら）｜Kitamura Sukiyaki',
+    cuisine: '米芝蓮一星，百年老字號關西風壽喜燒，桌邊服務',
+    budget: '午 ¥8,000~｜晚 ¥15,000~',
+    search: '搜尋「北むら 壽喜燒 心齋橋」',
+    area: '心齋橋',
+    tag: '壽喜燒'
   },
   {
-    name: 'HARBS／辻利抹茶甜點',
-    detail: '下午茶 15:00 後較鬆，HARBS 草莓蛋糕與辻利抹茶聖代是招牌',
-    tag: '甜品'
+    name: '壽司 早田｜Sushi Hayata',
+    cuisine: '板前壽司，新鮮度高，中高價位的優質選擇',
+    budget: '午 ¥3,000~｜晚 ¥8,000~',
+    search: '搜尋「Sushi Hayata 心齋橋」',
+    area: '心齋橋',
+    tag: '壽司'
   },
   {
-    name: '黑門市場海鮮、生蠔、壽司',
-    detail: '現點即食，記得備好現金；拍照先詢問店家，可順便買水果'
+    name: '美津之（美津の）｜Mizuno',
+    cuisine: '必比登大阪燒，食材講究，熱門排隊名店',
+    budget: '午/晚 ¥2,000~',
+    search: '搜尋「美津の 大阪燒」',
+    area: '心齋橋',
+    tag: '大阪燒'
+  },
+  {
+    name: 'The Cosmopolitan Grill Bar Terrace',
+    cuisine: '時尚高級西餐／牛排，Grand Front Osaka，適合約會/商務',
+    budget: '午 ¥3,500~｜晚 ¥10,000~',
+    search: '搜尋「The Cosmopolitan 大阪」',
+    area: '梅田',
+    tag: '牛排'
+  },
+  {
+    name: '北新地 壽司千頭｜Sushi Senzu',
+    cuisine: '高級江戶前壽司，北新地精緻套餐',
+    budget: '午 ¥5,000~｜晚 ¥15,000~',
+    search: '搜尋「寿司千頭 北新地」',
+    area: '梅田',
+    tag: '壽司'
+  },
+  {
+    name: '白雲台（Grand Front店）｜Hakuundai',
+    cuisine: '景觀燒肉，黑毛和牛，俯瞰梅田夜景',
+    budget: '午 ¥2,500~｜晚 ¥6,000~',
+    search: '搜尋「白雲台 グランフロント」',
+    area: '梅田',
+    tag: '燒肉'
+  },
+  {
+    name: '大阪燒 Yukari（曾根崎本店）｜お好み焼 ゆかり',
+    cuisine: '老字號升級版大阪燒，用料豐富，環境舒適',
+    budget: '午/晚 ¥1,500~¥3,000',
+    search: '搜尋「お好み焼 ゆかり 曾根崎」',
+    area: '梅田',
+    tag: '大阪燒'
+  },
+  {
+    name: '大阪萬豪都酒店 ZK 景觀餐廳｜ZK Restaurant',
+    cuisine: '57 樓絕景，歐陸／鐵板燒／懷石，慶祝首選',
+    budget: '午 ¥6,000~｜晚 ¥15,000~',
+    search: '搜尋「ZK レストラン 大阪マリオット」',
+    area: '天王寺',
+    tag: '景觀'
+  },
+  {
+    name: '牛炸 京都勝牛（阿倍野店）｜Kyoto Katsugyu',
+    cuisine: '吉列炸牛排，半熟多汁，可搭鐵板再煎',
+    budget: '午/晚 ¥2,000~¥3,500',
+    search: '搜尋「京都勝牛 阿倍野」',
+    area: '天王寺',
+    tag: '炸牛'
+  },
+  {
+    name: '串炸達摩（新世界總本店）｜Kushikatsu Daruma',
+    cuisine: '經典串炸發源店，海鮮和和牛串值得點',
+    budget: '午/晚 ¥3,000~',
+    search: '搜尋「串カツだるま 新世界本店」',
+    area: '天王寺',
+    tag: '串炸'
+  },
+  {
+    name: '鰻魚之錦（うなぎのにしき）｜Unagi no Nishiki',
+    cuisine: '炭火鰻魚飯，醬汁濃郁，中高價位',
+    budget: '午/晚 ¥3,500~',
+    search: '搜尋「うなぎのにしき 天王寺」',
+    area: '天王寺',
+    tag: '鰻魚'
+  },
+  {
+    name: '魚市食堂｜Uoichi Shokudo',
+    cuisine: '木津市場人氣海鮮丼，海膽三文魚子堆山',
+    budget: '早/午 ¥2,500~¥4,500',
+    search: '搜尋「魚市食堂 木津市場」',
+    area: '木津市場',
+    tag: '海鮮丼'
+  },
+  {
+    name: '川上商店｜Kawakami Shoten',
+    cuisine: '炭火國產鰻魚，味道達高級料亭水準',
+    budget: '早/午 ¥3,000~¥4,500',
+    search: '搜尋「川上商店 木津市場 鰻魚」',
+    area: '木津市場',
+    tag: '鰻魚'
+  },
+  {
+    name: '壽司 當志郎｜Sushi Toshiro',
+    cuisine: '市場直送壽司，拖羅必點，隱世小店',
+    budget: '早/午 ¥2,500~¥4,000',
+    search: '搜尋「寿司 当志郎 木津市場」',
+    area: '木津市場',
+    tag: '壽司'
+  },
+  {
+    name: '木津市場提醒',
+    cuisine: '營業 06:00-14:00 為主，周三/周日多為休市，安排早午餐時段',
+    budget: '請避開晚餐時段以免撲空',
+    search: '出發前查木津市場官網日曆與臨時休市公告',
+    area: '木津市場',
+    tag: '營業時間'
+  }
+]
+
+const prepList = [
+  {
+    id: 'passport',
+    title: '護照 / 簽證',
+    detail: '確認護照有效期 6 個月以上；如需 eVisa/ETA 先申請，護照與簽證掃描檔存雲端'
+  },
+  {
+    id: 'cards',
+    title: 'Suica・付款',
+    detail: '預先準備 Suica（西瓜卡）或行動版；帶免外幣手續費信用卡，日圓現金足額'
+  },
+  {
+    id: 'connectivity',
+    title: '上網 / App',
+    detail: '購買 eSIM 或 Wi‑Fi 蛋，下載 Google Maps、翻譯 App、餐廳預約或排隊 App'
+  },
+  {
+    id: 'transport',
+    title: '機場路線',
+    detail: '熟讀：關空快速 / Haruka → 天王寺 → 大和路線（綠色）往 JR 難波，OCAT 電梯到 22F Lobby'
+  },
+  {
+    id: 'booking',
+    title: '住宿・餐廳預約',
+    detail: '確認飯店訂單；熱門餐廳（松阪牛燒肉M、北村壽喜燒、ZK 等）提前預約'
+  },
+  {
+    id: 'insurance',
+    title: '旅遊保險',
+    detail: '購買旅遊保險，備份保單與緊急聯絡電話；家人聯絡方式及使館資訊留存'
+  },
+  {
+    id: 'clothes',
+    title: '行李與保暖',
+    detail: '12 月早晚 5-7°C：薄羽絨、防水鞋、暖暖包、手套帽子；常用藥品與充電線'
   }
 ]
 
 const tips = [
   { title: '餐廳排隊', detail: '避開 12:00-13:00、18:30-19:30；多人可以先抽號碼後分工逛街' },
   { title: '天氣裝備', detail: '12 月早晚 5-7°C，薄羽絨＋帽／手套；環球影城日帶防水鞋與暖暖包' },
-  { title: '付款方式', detail: '現金＋信用卡並用，少數小店只收現金；ICOCA 可在便利店小額刷卡' },
+  { title: '付款方式', detail: '現金＋信用卡並用，少數小店只收現金；Suica（西瓜卡）可在便利店小額刷卡' },
   { title: '行李寄放', detail: '最後一天退房後可寄放飯店；奈良／京都站置物櫃當備用方案' },
   { title: '退稅與收據', detail: '藥妝拆包前確認退稅規則，收據與護照同放夾鏈袋' },
   { title: '緊急聯絡', detail: '日本 119 救護/火警，110 報警；護照與保險單掃描存在雲端' }
@@ -196,8 +334,8 @@ const logistics = [
   },
   {
     label: '交通',
-    value: 'ICOCA + 南海特急 / 地鐵一日券視行程',
-    detail: '機場→難波：南海 Rapi:t 或 Airport Express；奈良用近鐵，京都用京阪，記得充值'
+    value: 'Suica（西瓜卡）通用｜視情況補單程券',
+    detail: '機場至酒店：① 搭乘【關空快速】或【Haruka】至天王寺；② 轉【大和路線（綠色）】往 JR 難波；③ JR 難波位於 OCAT 大樓內，電梯上 22 樓 Lobby。全程刷 Suica 進出站；奈良行程搭【近鐵】，京都行程搭【京阪】，出發前請先充值 Suica'
   },
   {
     label: '預算',
@@ -230,12 +368,64 @@ function ExpandableSection({ items, collapsedCount = 3, renderItem, expandLabel,
 
   return (
     <div className="expandable">
+      {hasOverflow && expanded && (
+        <button className="ghost-button ghost-button--inline" type="button" onClick={() => setExpanded(false)}>
+          {collapseLabel || '收起'}
+        </button>
+      )}
       <div className="expandable__list">
         {visibleItems.map(renderItem)}
       </div>
       {hasOverflow && (
         <button className="ghost-button" type="button" onClick={() => setExpanded((prev) => !prev)}>
           {expanded ? (collapseLabel || '收起') : (expandLabel || `展開全部（${items.length}）`)}
+        </button>
+      )}
+    </div>
+  )
+}
+
+function Checklist({ items, collapsedCount = 3, expandLabel = '展開全部', collapseLabel = '收起' }) {
+  const [checked, setChecked] = useState(() => new Set())
+  const [expanded, setExpanded] = useState(false)
+
+  const hasOverflow = items.length > collapsedCount
+  const visibleItems = expanded ? items : items.slice(0, collapsedCount)
+
+  const toggle = (id) => {
+    setChecked((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
+      } else {
+        next.add(id)
+      }
+      return next
+    })
+  }
+
+  return (
+    <div className="checklist">
+      {hasOverflow && expanded && (
+        <button className="ghost-button ghost-button--inline" type="button" onClick={() => setExpanded(false)}>
+          {collapseLabel}
+        </button>
+      )}
+      {visibleItems.map((item) => {
+        const isChecked = checked.has(item.id)
+        return (
+          <label key={item.id} className={`checklist__row ${isChecked ? 'checklist__row--checked' : ''}`}>
+            <input type="checkbox" checked={isChecked} onChange={() => toggle(item.id)} />
+            <div>
+              <strong>{item.title}</strong>
+              <p className="muted">{item.detail}</p>
+            </div>
+          </label>
+        )
+      })}
+      {hasOverflow && (
+        <button className="ghost-button" type="button" onClick={() => setExpanded((prev) => !prev)}>
+          {expanded ? collapseLabel : `${expandLabel}（${items.length}）`}
         </button>
       )}
     </div>
@@ -331,6 +521,12 @@ export default function App() {
         </header>
 
         <main className="grid">
+          <Card title="行程概要">
+            <div className="cover-card">
+              <img src={coverImage} alt="關西 6 日大冒險行程表封面" />
+            </div>
+          </Card>
+
           <Card title="航班與日期">
             <div className="flights">
               <div className="flight">
@@ -345,6 +541,10 @@ export default function App() {
               </div>
             </div>
             <p className="hint">航班時間來源：Planemapper（近期班表）。起飛前仍以航空公司通知為準。</p>
+          </Card>
+
+          <Card title="事前準備 Checklist" footer={<p className="hint">出發前逐項勾選，護照與保險掃描檔記得備份。</p>}>
+            <Checklist items={prepList} collapsedCount={4} expandLabel="展開全部準備項目" collapseLabel="收起" />
           </Card>
 
           <Card title="每日行程（6 天分頁）" footer={<p className="hint">使用下方分頁查看當日安排與天氣。</p>}>
@@ -379,9 +579,16 @@ export default function App() {
                 <div key={spot.name} className="info-row">
                   <div>
                     <strong>{spot.name}</strong>
-                    <p className="muted">{spot.detail}</p>
+                    <p className="muted">{spot.cuisine}</p>
+                    <p className="muted">預算：{spot.budget}</p>
+                    <p className="muted">
+                      🔎 搜尋：
+                      <a href={`https://www.google.com/search?q=${encodeURIComponent(spot.search)}`} target="_blank" rel="noreferrer">
+                        {spot.search}
+                      </a>
+                    </p>
                   </div>
-                  {spot.tag && <span className="badge">{spot.tag}</span>}
+                  {(spot.area || spot.tag) && <span className="badge">{spot.area || spot.tag}</span>}
                 </div>
               )}
             />
